@@ -31,8 +31,8 @@ use App\Http\Controllers\PostController;
 
     Route::get('/Profile',[UserController::class,'Profile'])->name('profile')->middleware('auth');
 // Route::get('/edit_profile',[UserController::class,'Edit_Profile'])->name('.edit_profile');
-    Route::get('/EditProfile',[UserController::class,'edit'])->name('.edit_profile')->middleware('auth');
-    Route::post('/EditProfile',[UserController::class,'update'])->name('.Update_Profile')->middleware('auth');
+    Route::get('/EditProfile',[UserController::class,'edit'])->name('.edit_profile');
+    Route::post('/EditProfile',[UserController::class,'update'])->name('.Update_Profile');
 
     Route::get('/Post',[PostController::class,'index'])->name('.Create_Post');
     Route::post('/Post',[PostController::class,'store'])->name('Add_Post');
@@ -49,3 +49,15 @@ use App\Http\Controllers\PostController;
     Route::get('/MeoTimDo4',[AdminController::class,'MeoTimDo4'])->name('meo-tim-do4');
     Route::get('/MeoTimDo5',[AdminController::class,'MeoTimDo5'])->name('meo-tim-do5');
     Route::get('/MeoTimDo6',[AdminController::class,'MeoTimDo6'])->name('meo-tim-do6');
+
+
+    //Dành cho Admin
+Route::get('/admin',[UserController::class,'login'])->name('.Admin_Login');
+Route::post('/admin_login',[UserController::class,'Handle_Login'])->name('.handle_admin_Login');
+
+Route::get('logout',[UserController::class,'logout'])->name('Logout')->middleware('auth');
+Route::get('Adminlogout',[UserController::class,'Admin_Logout'])->name('.admin_logout')->middleware('auth');
+
+
+Route::get('/registerAdmin',[UserController::class,'RegisterAdmin'])->name('.create-RegisterAdmin');
+Route::post('/registerAdmin',[UserController::class,'storeAdmin'])->name('.add-RegisterAdmin');

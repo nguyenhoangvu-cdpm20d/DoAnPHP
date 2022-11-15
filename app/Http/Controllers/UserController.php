@@ -105,29 +105,29 @@ class UserController extends Controller
         return view('PagesUser.EditProfile',compact('profile'));
     }
     
-    public function update(Request $request, $id)
+    public function update(Request $request )
     {
-        //  $profile = User::find($id);
-        //  if(!empty($profile))
-        // {
-        //     return("Không tìm thấy người dùng vs id ={$id}");
-        // }
-        // //return view('User.Edit-Profile',compact('profile'));
-        // $profile -> Username = $request -> Username;
-        // $profile -> email = $request -> email;
-        // $profile -> phone = $request -> phone;
-        // $profile -> address = $request -> address;
-        // $profile -> save();
-        // return view('PagesUser.EditProfile');
+        $profile = User::find(Auth::user()->id);
+        if(empty($profile))
+        {
+            return("Không tìm thấy người dùng vs id ={$id}");
+        }
+        //return view('User.Edit-Profile',compact('profile'));
+        $profile -> Username = $request -> Username;
+        $profile -> email = $request -> email;
+        $profile -> phone = $request -> phone;
+        $profile -> address = $request -> address;
+        // $profile -> image = $request -> image;
+        // $profile ->path = $request->file('avatar')->store('public/avatar');
+        // $file = $request->avatar;
+        // $file_name = $file->getClientOriginalName();
+        // $file->move(public_path('avatar'), $file_name);
+        // $request->merge(['avatar' => $file_name]);
+        $profile -> save();
+        //dd($profile->all());
+        return redirect()->route('profile');
 
-        $profile = User::find($id)->update([
-                'Username'=>$request->Username,
-                'email'=>$request->email,
-                'phone'=>$request->phone,
-                'address'=>$request->address,
-            ]
-            );
-            return view('PagesUser.Profile');
+      
     }
 
     /**

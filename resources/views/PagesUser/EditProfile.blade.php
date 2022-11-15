@@ -25,7 +25,7 @@
                 <h3>Thông Tin Cá Nhân</h3>
                 <form class="form-horizontal" method="POST"
                     action="{{route('.Update_Profile', ['id' => Auth::user()->id ])}}" role="form">
-
+@csrf
                     <div class="form-group" style="font-size: 20px;">
                         <label class="col-md-3 control-label">Username:</label>
                         <div class="col-md-8">
@@ -61,8 +61,8 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-8">
-                            <!-- <button class="btn btn-lg btn-success" type="submit"><a style="color:white;" href="{{route('profile')}}">Save</a></button> -->
-                            <button class="btn btn-lg btn-success" type="submit">Save</button>
+                             <button class="btn btn-lg btn-success" type="submit"><a style="color:white;" href="{{route('profile')}}"></a>Lưu</button> 
+                            <!-- <button class="btn btn-lg btn-success" type="submit">Save</button> -->
                             <span></span>
                             
 

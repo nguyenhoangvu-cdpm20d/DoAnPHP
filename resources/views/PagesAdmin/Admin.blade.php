@@ -60,7 +60,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#" class="logout">
+				<a href="{{route('.Admin_Login')}}" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Đăng xuất</span>
 				</a>
