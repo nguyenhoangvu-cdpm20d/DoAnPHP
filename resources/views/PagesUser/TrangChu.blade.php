@@ -38,16 +38,20 @@
             </div>
             @if(Auth::check())
             <div class="dk">
-                <a href="{{route('profile')}}">Xin chào {{Auth::user()->Username}}</a>
+                <a href="{{route('profile')}}">Xin chào {{Auth::user()->Username}}</a>||<a href="{{route('Logout')}}">
+                    Đăng
+                    xuất</a>
             </div>
 
-            
-            <div class="dk"><a href="{{route('Logout')}}"> Đăng
-                    xuất</a></div>
+
+            <!-- <div class="dk"><a href="{{route('Logout')}}"> Đăng -->
+            <!-- xuất</a></div> -->
 
             @else
-            <div class="dk"> <a href="{{route('dang-ky')}}"> Đăng ký</a> ||<a href="{{route('dang-nhap')}}"> Đăng
-                    nhập</a> </div>
+
+            <div class="dk"> <a href="{{route('profile')}}">Xin chào: {{Auth::user()->Username}}</a> ||<a
+                    href="{{route('Logout')}}"> Đăng Xuất</a> </div>
+
             @endif
 
         </div>
