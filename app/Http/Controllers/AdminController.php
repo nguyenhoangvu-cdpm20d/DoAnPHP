@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\User;
+use App\Models\Post;
+use App\Models\LoaiBaiViet;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,12 +17,18 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return View('PagesUser.TrangChu');
+        $ListPost = Post::all();
+        return View('PagesAdmin.Admin',compact('ListPost'));
     }
 
     public function Login()
     {
         return View('PagesUser.Login');
+    }
+    public function listUser()
+    {
+        $listUser = User::all();
+        return View('PagesAdmin.LoaiTaiKhoan',compact('listUser'));
     }
 
     public function MeoTimDo()

@@ -52,7 +52,8 @@ class UserController extends Controller
         }
         else if(Auth::attempt($credentials2))
         {
-            return View('PagesAdmin.Admin');
+            $ListPost = Post::all()->sortByDesc('id');
+            return View('PagesAdmin.Admin',compact('ListPost'));
         }
         else{
             return redirect()->back()->with("Error","Đăng nhập không thành công!");

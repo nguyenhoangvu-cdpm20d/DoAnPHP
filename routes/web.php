@@ -41,19 +41,15 @@ use App\Http\Controllers\PostController;
     Route::get('/GopY',[AdminController::class,'GopY'])->name('gop-y');
     Route::get('/GioiThieu',[AdminController::class,'GioiThieu'])->name('gioi-thieu');
 
-    /*Trang mẹo tìm đồ */
-    Route::get('/MeoTimDo',[AdminController::class,'MeoTimDo'])->name('meo-tim-do');
-    Route::get('/MeoTimDo1',[AdminController::class,'MeoTimDo1'])->name('meo-tim-do1');
-    Route::get('/MeoTimDo2',[AdminController::class,'MeoTimDo2'])->name('meo-tim-do2');
-    Route::get('/MeoTimDo3',[AdminController::class,'MeoTimDo3'])->name('meo-tim-do3');
-    Route::get('/MeoTimDo4',[AdminController::class,'MeoTimDo4'])->name('meo-tim-do4');
-    Route::get('/MeoTimDo5',[AdminController::class,'MeoTimDo5'])->name('meo-tim-do5');
-    Route::get('/MeoTimDo6',[AdminController::class,'MeoTimDo6'])->name('meo-tim-do6');
+    
 
 
     //Dành cho Admin
 Route::get('/admin',[UserController::class,'login'])->name('.Admin_Login');
 Route::post('/admin_login',[UserController::class,'Handle_Login'])->name('.handle_admin_Login');
+
+Route::get('/index',[AdminController::class,'index'])->name('menu');
+Route::get('/listuser',[AdminController::class,'listUser'])->name('ListUser');
 
 Route::get('logout',[UserController::class,'logout'])->name('Logout')->middleware('auth');
 Route::get('Adminlogout',[UserController::class,'Admin_Logout'])->name('.admin_logout')->middleware('auth');
@@ -61,3 +57,16 @@ Route::get('Adminlogout',[UserController::class,'Admin_Logout'])->name('.admin_l
 
 Route::get('/registerAdmin',[UserController::class,'RegisterAdmin'])->name('.create-RegisterAdmin');
 Route::post('/registerAdmin',[UserController::class,'storeAdmin'])->name('.add-RegisterAdmin');
+
+
+
+
+
+/*Trang mẹo tìm đồ */
+Route::get('/MeoTimDo',[AdminController::class,'MeoTimDo'])->name('meo-tim-do');
+Route::get('/MeoTimDo1',[AdminController::class,'MeoTimDo1'])->name('meo-tim-do1');
+Route::get('/MeoTimDo2',[AdminController::class,'MeoTimDo2'])->name('meo-tim-do2');
+Route::get('/MeoTimDo3',[AdminController::class,'MeoTimDo3'])->name('meo-tim-do3');
+Route::get('/MeoTimDo4',[AdminController::class,'MeoTimDo4'])->name('meo-tim-do4');
+Route::get('/MeoTimDo5',[AdminController::class,'MeoTimDo5'])->name('meo-tim-do5');
+Route::get('/MeoTimDo6',[AdminController::class,'MeoTimDo6'])->name('meo-tim-do6');
