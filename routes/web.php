@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\BinhLuanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +19,7 @@ use App\Http\Controllers\PostController;
     Route::get('/',[UserController::class,'index'])->name('trang-chu');
 
     Route::get('/Login',[UserController::class,'Login'])->name('dang-nhap');
-    Route::post('/Login',[UserController::class,'Handle_Login'])->name('.handle-Login');
+    Route::post('/',[UserController::class,'Handle_Login'])->name('.handle-Login');
 
     Route::get('Logout',[UserController::class,'logout'])->name('Logout')->middleware('auth');
     Route::get('Adminlogout',[UserController::class,'AdminLogout'])->name('.admin_logout')->middleware('auth');
@@ -36,20 +37,25 @@ use App\Http\Controllers\PostController;
 
     Route::get('/Post',[PostController::class,'index'])->name('.Create_Post');
     Route::post('/Post',[PostController::class,'store'])->name('Add_Post');
-    Route::get('/Post/PostDetail/{id}',[PostController::class,'detail'])->name('PostDetail');
 
     Route::get('/GopY',[AdminController::class,'GopY'])->name('gop-y');
     Route::get('/GioiThieu',[AdminController::class,'GioiThieu'])->name('gioi-thieu');
-
+    
+    Route::get('/ChiTietBaiViet/{id}',[PostController::class,'ChiTietBaiViet'])->name('chitietbaiviet');
+    Route::post('/ChiTietBaiViet/{id}',[BinhLuanController::class,'store'])->name('tao_binhluan');
+    Route::get('/xoabaiviet/{id}',[PostController::class,'destroy'])->name('DeleteDestroy');
     
 
 
     //Dành cho Admin
+
+
+
 Route::get('/admin',[UserController::class,'login'])->name('.Admin_Login');
 Route::post('/admin_login',[UserController::class,'Handle_Login'])->name('.handle_admin_Login');
 
 Route::get('/index',[AdminController::class,'index'])->name('menu');
-Route::get('/listuser',[AdminController::class,'listUser'])->name('ListUser');
+Route::get('/listuser',[AdminController::class,'listUser'])->name('ListUser')->middleware('Admin');
 
 Route::get('logout',[UserController::class,'logout'])->name('Logout')->middleware('auth');
 Route::get('Adminlogout',[UserController::class,'Admin_Logout'])->name('.admin_logout')->middleware('auth');

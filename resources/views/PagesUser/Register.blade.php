@@ -1,147 +1,86 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <link rel="shortcut icon" href="teamplate/ima/icon.jpg">
-    <link type="text/css" href="teamplate/css/dangki.css" rel="stylesheet">
-    <script src="teamplate/js/dangki.js"></script>
+    <title></title>
     <meta charset="utf-8">
-    <style>
-       @import url(https://fonts.googleapis.com/css?family=BenchNine:700);
-
-.snip1582 {
-    background-color: #c47135;
-    border: none;
-    color: #ffffff;
-    cursor: pointer;
-    display: inline-block;
-    font-family: 'BenchNine', Arial, sans-serif;
-    font-size: 1em;
-    font-size: 22px;
-    line-height: 1em;
-    margin: 15px 40px;
-    outline: none;
-    padding: 12px 40px 10px;
-    position: relative;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-.snip1582:before,
-.snip1582:after {
-    border-color: transparent;
-    -webkit-transition: all 0.25s;
-    transition: all 0.25s;
-    border-style: solid;
-    border-width: 0;
-    content: "";
-    height: 24px;
-    position: absolute;
-    width: 24px;
-}
-
-.snip1582:before {
-    border-color: #c47135;
-    border-top-width: 2px;
-    left: 0px;
-    top: -5px;
-}
-
-.snip1582:after {
-    border-bottom-width: 2px;
-    border-color: #c47135;
-    bottom: -5px;
-    right: 0px;
-}
-
-.snip1582:hover,
-.snip1582.hover {
-    background-color: #c47135;
-}
-
-.snip1582:hover:before,
-.snip1582.hover:before,
-.snip1582:hover:after,
-.snip1582.hover:after {
-    height: 100%;
-    width: 100%;
-}
-    </style>
-    <title>ICT 36 - Đăng ký</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body bgcolor="#EFF0F5">
-    <div id="wrap">
-        <div id="header"> <img src="teamplate/ima/icon.jpg" class="img1"> <br>
-            <h2 class="h2">Kiến thức - Kinh nghiệm - Hỏi đáp</h2>
+<body>
+    <section class="vh-100 bg-image">
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="card" style="border-radius: 15px;">
+                            <div class="card-body p-5">
+                                <h2 class="text-uppercase text-center mb-5">Đăng Ký Tài Khoản</h2>
 
-            <!-- <form>
-    <select name="nn">
-      <option value="Vn">VN</option>
-      <option value="ENG">ENG</option>
-    </select>
-  </form>
- -->
-            <form>
-                <input type="text" name="search" placeholder="Tìm bài viết, sản phẩm...">
-            </form>
-        </div>
-        <div id="menu">
-            <ul>
-                <h3>
-                    <li> <a href="{{route('trang-chu')}}" id="a1"> Trang chủ</a></li>
-                    <li> <a href="{{route('meo-tim-do')}}" id="a1"> Mẹo tìm đồ </a> </li>
+                                <form action="{{route('.add-Register')}}" method="POST">
+                                    @csrf
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="Username">Tên đăng nhập</label>
+                                        <input type="text" name="Username" class="form-control form-control-lg" />
 
-                    <li> <a href="{{route('gioi-thieu')}}" id="a1"> Giới thiệu </a> </li>
-                    <li> <a href="{{route('gop-y')}}" id="a1"> Góp ý</a> </li>
-                </h3>
-            </ul>
-        </div>
-        <br>
-        <div id="contend"> <br>
-            <div class="divtk"><strong>TẠO TÀI KHOẢN WEBSITE </strong></div>
-            <div class="divtk2">Bạn đã là thành viên ? <a href="{{route('dang-nhap')}}">Đăng nhập</a> ngay.</div>
-            <br>
+                                        @error('Username')
+                                        <div style="color:red;">{{ $message }}</div><br>
+                                        @enderror
+                                    </div>
 
-            <form class="modal-content" action="{{route('.add-Register')}}" method="POST">
-                @csrf
-                <div class="container">
-                    <h1>Đăng ký</h1>
-                    <hr>
-                    <br>
-                    <label for="Username"><b>Họ và tên</b></label>
-                    <input type="text" placeholder="Nhập Username" name="Username">
-                    @error('Username')
-                    <div style="color:red;">{{ $message }}</div><br>
-                    @enderror
-                    <br>
-                    <br>
-                    <label for="email"><b>Email</b></label>
-                    <input type="text" placeholder="Nhập Email" name="email">
-                    @error('email')
-                    <div style="color:red;">{{ $message }}</div><br>
-                    @enderror
-                    <br>
-                    <br>
-                    <label for="psw"><b>Mật khẩu</b></label>
-                    <input type="password" placeholder="Nhập mật khẩu" name="password">
-                    @error('password')
-                    <div style="color:red;">{{ $message }}</div><br>
-                    @enderror
-                    <br>
-                    <br>
-                    <label for="psw-repeat"><b>Nhập lại mật khẩu</b></label>
-                    <input type="password" placeholder="Nhập lại" name="password_confirmation">
-                    @error('password_confirmation')
-                    <div style="color:red;">{{ $message }}</div><br>
-                    @enderror
-                    <p>Bằng cách tạo một tài khoản, bạn đồng ý với <a href="#" style="color:dodgerblue">Điều khoản &
-                            Quyền riêng tư của chúng tôi</a>.</p>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="email">Email</label>
+                                        <input type="email" name="email" class="form-control form-control-lg" />
 
-                    <div class="clearfix">
-                        <!-- <button type="button" onclick="document.getElementById('id02').style.display='none'" -->
-                            <!-- class="cancelbtn">Thoát</button> -->
-                        <button type="submit" class="snip1582">Đăng ký</button>
+                                        @error('email')
+                                        <div style="color:red;">{{ $message }}</div><br>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="psw">Mật khẩu</label>
+                                        <input type="password" name="password" class="form-control form-control-lg" />
+
+                                        @error('password')
+                                        <div style="color:red;">{{ $message }}</div><br>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="psw-repeat">Nhập lại mật khẩu</label>
+                                        <input type="password" name="password_confirmation"
+                                            class="form-control form-control-lg" />
+
+                                        @error('password_confirmation')
+                                        <div style="color:red;">{{ $message }}</div><br>
+                                        @enderror
+                                    </div>
+                                    <div>
+                                        @if(session('Error'))
+                                        <p style="color:red"> {{@session('Error')}}</p>
+                                        @endif
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <button type="submit"
+                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Đăng
+                                            Ký</button>
+                                    </div>
+
+                                    <p class="text-center text-muted mt-5 mb-0">Bạn đã có tài khoản? <a
+                                            href="{{route('dang-nhap')}}" class="fw-bold text-body"><u>Đăng Nhập</u></a>
+                                    </p>
+
+                                </form>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </form>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

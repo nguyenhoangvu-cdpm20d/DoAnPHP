@@ -25,13 +25,7 @@
 		<li class="">
 				<a href="#">
 					<i class='bx bxs' ></i>
-					<span class="text" style="color:red;font-weight: bold">Xin chào:  <h2>{{Auth::user()->Username}}</h2></span>
-				</a>
-			</li>
-            <li class="">
-			<a href="">
-					<i class='' ></i>
-					<span class="text">Quản lý bài viết</span>
+					<span class="text" style="color:red;font-weight: bold">Xin chào:  {{Auth::user()->Username}}</span>
 				</a>
 			</li>
 			<li class="active">

@@ -6,7 +6,7 @@ use App\Models\Post;
 use App\Models\LoaiDo;
 use App\Models\Quan;
 use App\Models\Phuong;
-//use App\Models\Comment;
+use App\Models\BinhLuan;
 use App\Models\LoaiBaiViet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +22,7 @@ class PostController extends Controller
     public function detail(Post $id)    
     {
         $PostDetail = Post::find($id);
+        
         //$ListComment = Comment::all()->sortByDesc('id');
         return view('PagesUser.PostDetail',compact('PostDetail'));
     }
@@ -79,6 +80,13 @@ class PostController extends Controller
         return redirect()->route('trang-chu');
     }
 
+    public function ChiTietBaiViet(Post $id)
+    {
+        $chitiet = Post::find($id);
+        $ListComment = BinhLuan::all();
+        return view('PagesUser.ChiTietBaiViet',compact(['chitiet','ListComment']));
+    }
+
     /**
      * Display the specified resource.
      *
@@ -119,8 +127,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $baiviet = Post::find($id)->delete();
+        return redirect()->route('menu');
     }
 }

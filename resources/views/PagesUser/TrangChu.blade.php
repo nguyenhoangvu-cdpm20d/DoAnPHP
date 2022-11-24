@@ -32,7 +32,6 @@
                         <li> <a href="{{route('meo-tim-do')}}" id="a1"> Mẹo tìm đồ </a> </li>
                         <li> <a href="{{route('Add_Post')}}" id="a1"> Đăng bài </a> </li>
                         <li> <a href="{{route('gioi-thieu')}}" id="a1"> Giới thiệu </a> </li>
-                        <li> <a href="{{route('gop-y')}}" id="a1"> Góp ý</a> </li>
                     </h3>
                 </ul>
             </div>
@@ -42,13 +41,13 @@
             </div>
 
 
-             <div class="dk"><a href="{{route('Logout')}}"> Đăng 
-             xuất</a></div> -->
+            <div class="dk"><a href="{{route('Logout')}}"> Đăng
+                    xuất</a></div> -->
 
             @else
 
-            <div class="dk"> <a href="{{route('dang-nhap')}}">Đăng nhập</a> ||<a
-                    href="{{route('Logout')}}"> Đăng Xuất</a> </div>
+            <div class="dk"> <a href="{{route('dang-nhap')}}">Đăng nhập</a> ||<a href="{{route('dang-ky')}}"> Đăng
+                    ký</a> </div>
 
             @endif
 
@@ -78,7 +77,7 @@
                         <marquee onmouseover="this.stop()" direction="up" onmouseout="this.start()" Scroll
                             scrollamount="5">
                             @foreach($ListPost as $Post)
-                            <a href="#">{{$Post->Title}}</a>
+                            <a href="/ChiTietBaiViet/{{$Post->id}}">{{$Post->Title}}</a>
                             <br>
                             @endforeach
 
@@ -94,32 +93,19 @@
                 </h3>
                 </a> <br>
                 @foreach($ListPost as $Post)
-                <span> <img src="anh/{{$Post->image}}" width="200" height="200"> <a href="#">
+                <span> <img src="anh/{{$Post->image}}" width="200" height="200"> <a
+                        href="/ChiTietBaiViet/{{$Post->id}}">
                         <h2> {{$Post->Title}}</h2>
                     </a> <br>
                     {{$Post->noidung}}
                     <br>
                     <p>{{$Post->created_at->format('d/m/Y')}}</p>
                 </span> <br>
-                @endforeach
-                <hr>
-                <br>
-                <hr>
-                <div class="docnhieu">
-                    <hr>
-                    <center>
-                        <h3 class="divtb">
-                            <marquee>
-                                <p>TIN ĐỌC NHIỀU
-                            </marquee>
-                        </h3>
-                    </center>
-                    @foreach($ListPost as $Post)
-                    <div> <img src="anh/{{$Post->image}}" width="200" height="200"> <a href="#">{{$Post->Title}}</a>
-                    </div>
-                    @endforeach
+
+                @endforeach()
+                <div>
+                    
                 </div>
-                <hr>
             </div>
             <div id="right"> <img src="https://cdn.fptshop.com.vn/Uploads/Originals/2019/2/28/636869719313136991_H2.png"
                     class="qc1"> <br>
@@ -129,8 +115,9 @@
                 <br>
                 @foreach($ListPost as $Post)
                 <div id="r1"> <b>
-                        <img src="anh/{{$Post->image}}" width="80" height="80"> <a href="#"> {{$Post->Title}}</a> </div>
-                @endforeach
+                        <img src="anh/{{$Post->image}}" width="80" height="80"> <a href="/ChiTietBaiViet/{{$Post->id}}">
+                            {{$Post->Title}}</a> </div>
+                @endforeach()
                 <hr>
 
 

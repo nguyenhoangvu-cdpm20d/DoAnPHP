@@ -46,14 +46,13 @@ class UserController extends Controller
                 'loaitaikhoan_id' => 2];
         // $credentials2 = $request -> only(['Username','password','loaitaikhoan_id'=>2]);
         if(Auth::attempt($credentials)){
-            $ListPost = Post::all()->sortByDesc('id');
-            
+            $ListPost = Post::orderBy('id','DESC')->paginate(3);
             return View('PagesUser.TrangChu',compact('ListPost'));
         }
         else if(Auth::attempt($credentials2))
         {
             $ListPost = Post::all()->sortByDesc('id');
-            return View('PagesAdmin.Admin',compact('ListPost'));
+            return View('PagesAdmin.layout',compact('ListPost'));
         }
         else{
             return redirect()->back()->with("Error","Đăng nhập không thành công!");
@@ -87,7 +86,8 @@ class UserController extends Controller
 
     public function Profile()
     {
-        return View('PagesUser.Profile');
+        $ListPost=Post::all()->where('TK_id','=',Auth::user()->id);
+        return View('PagesUser.Profile',compact('ListPost'));
     }
 
     public function EditProfile()
@@ -148,7 +148,13 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(dangkyRequest $request)
-    {
+    {   
+        $emailExist = User::where('email',$request->email)->count();
+        if($emailExist > 0)
+        {
+            return redirect()->back()->with('Error','Tài khoản email đã tồn tại');
+        }
+
         $Users = User::create([
             'Username'=>$request->Username,
             'email'=>$request->email,

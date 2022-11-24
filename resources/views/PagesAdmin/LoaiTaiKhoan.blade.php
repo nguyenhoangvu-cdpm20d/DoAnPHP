@@ -6,6 +6,9 @@
 
 	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<!-- My CSS -->
 	<link rel="stylesheet" href="teamplateAdmin/style.css">
 
@@ -76,14 +79,14 @@
                 <span class="text" style="color:red;font-weight: bold">Xin chào: {{Auth::user()->Username}}</span>
             </a>
         </li>
-        <li class="active">
-            <a href="#">
+        <li >
+            <a href="{{route('menu')}}">
                 <i class='bx bxs-book'></i>
                 <span class="text">Quản lý bài viết</span>
             </a>
         </li>
-        <li>
-            <a href="#">
+        <li class="active">
+            <a href="{{route('ListUser')}}">
                 <i class='bx bxs-group'></i>
                 <span class="text">Quản lý tài khoản</span>
             </a>
@@ -119,11 +122,11 @@
     <!-- MAIN -->
     <main>
 
-        @foreach($listUser as $User)
+
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Bài viết</h3>
+                    <h3>Tài khoản</h3>
 
                     <i class='bx bx'></i>
                     <i class='bx bx'></i>
@@ -135,28 +138,30 @@
                             <th>STT</th>
                             <th>Tên đăng nhập</th>
                             <th>Email</th>
-                            <th>Loại tài khoản</th>
+                            <th>Nơi sống</th>
+                            <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach($listUser as $User)
                         <tr>
                             <td>
 
                                 <p>{{$User->id}}</p>
                             </td>
-                            <td>{{$User->TenTK}}</td>
-                            <td>{{$User->loaibaiviet_id}}</td>
-                            <td>{{$User->Title}}</td>
-                            <td>{{$User->noidung}}</td>
-                            <td>{{$User->quan_id}}</td>
-                            <td>{{$User->phuong_id}}</td>
+                            <td>{{$User->Username}}</td>
+                            <td>{{$User->email}}</td>
+                            <td>{{$User->address}}</td>
+                            <td><a href="" class="btn btn-outline-success">Thêm</a>
+                                    <a href="" class="btn btn-outline-danger">Xoá</a></td>
                         </tr>
+        @endforeach
+
                     </tbody>
                 </table>
             </div>
 
         </div>
-
     </main>
     <!-- MAIN -->
 </section>

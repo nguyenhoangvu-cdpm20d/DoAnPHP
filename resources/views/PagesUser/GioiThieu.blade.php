@@ -23,7 +23,6 @@
         <li> <a href="{{route('meo-tim-do')}}" id="a1"> Mẹo tìm đồ </a> </li>
         <li> <a href="" id="a1"> Đăng bài </a> </li>
         <li> <a href="{{route('gioi-thieu')}}" id="a1"> Giới thiệu </a> </li>
-        <li> <a href="{{route('gop-y')}}" id="a1"> Góp ý</a> </li>
       </h3> 
   </ul>
   
