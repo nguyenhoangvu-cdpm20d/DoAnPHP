@@ -28,7 +28,7 @@
             <span class="text">AdminVTV</span>
         </a>
         <ul class="side-menu top">
-        <li class="">
+            <li class="">
                 <a href="#">
                     <i class='bx bxs'></i>
                     <span class="text" style="color:red;font-weight: bold">Xin chào: {{Auth::user()->Username}}</span>
@@ -41,13 +41,13 @@
                     <span class="text">Quản lý bài viết</span>
                 </a>
             </li>
-            <li class="active">
+            <li>
                 <a href="{{route('ListUser')}}">
                     <i class='bx bxs-user-circle'></i>
                     <span class="text">Quản lý tài khoản</span>
                 </a>
             </li>
-            <li >
+            <li class="active">
                 <a href="{{route('loai-bai-viet')}}">
                     <i class='bx bxs-book'></i>
                     <span class="text">Quản lý loại bài viết</span>
@@ -60,26 +60,26 @@
                 </a>
             </li>
             <li>
-				<a href="{{route('tin-tuc')}}">
-					<i class='bx bxs-news'></i>
-					<span class="text">Quản lý tin tức</span>
-				</a>
-			</li>
+                <a href="{{route('tin-tuc')}}">
+                    <i class='bx bxs-news'></i>
+                    <span class="text">Quản lý tin tức</span>
+                </a>
+            </li>
             <li>
-				<a href="{{route('quan')}}">
-					<i class='bx bxs-home'></i>
-					<span class="text">Quản lý Quận</span>
-				</a>
-			</li>
+                <a href="{{route('quan')}}">
+                    <i class='bx bxs-home'></i>
+                    <span class="text">Quản lý Quận</span>
+                </a>
+            </li>
             <li>
-				<a href="{{route('phuong')}}">
-					<i class='bx bxs-home'></i>
-					<span class="text">Quản lý Phường</span>
-				</a>
-			</li>
+                <a href="{{route('phuong')}}">
+                    <i class='bx bxs-home'></i>
+                    <span class="text">Quản lý Phường</span>
+                </a>
+            </li>
         </ul>
         <ul class="side-menu">
-            
+
             <li>
                 <a href="{{route('.Admin_Login')}}" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
@@ -97,13 +97,13 @@
 
         <!-- MAIN -->
         <main>
-
-        
+            <a href="{{route('.add-loaibaiviet')}}"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                    Thêm Loại Bài Viết
+                </button></a>
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3>Tài khoản</h3>
-
+                        <h3>Loại Bài Viết</h3>
                         <i class='bx bx'></i>
                         <i class='bx bx'></i>
 
@@ -111,32 +111,25 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>STT</th>
-                                <th>Tên đăng nhập</th>
-                                <th>SĐT</th>
-                                <th>Email</th>
-                                <th>Nơi sống</th>
-                                <th>Chức năng</th>
+                                <th>ID</th>
+                                <th>Tên Loại Bài Viết</th>
+                                <th>Chức Năng</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach($listUser as $User)
-                            <tr>
-                                <td>
 
-                                    {{$User->id}}
-                                </td>
-                                <td>{{$User->Username}}</td>
-                                <td>{{$User->phone}}</td>
-                                <td>{{$User->email}}</td>
-                                <td>{{$User->address}}</td>
+                        <tbody>
+                            @foreach($loaibaiviet as $List)
+                            <tr>
+                                <td>{{$List->id}}</td>
+                                <td>{{$List->tenloaibaiviet}}</td>
                                 <td>
-                                    <a href="{{('/update_taikhoan/'.$User->id)}}" class="btn btn-outline-success">Chỉnh Sửa</a>
+                                    <a href="{{('/update_loaibaiviet/'.$List->id)}}"><button type="button" class="btn btn-outline-success">Chỉnh Sửa</button></a> 
                                     <a href="" class="btn btn-outline-danger">Xoá</a>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
+
                     </table>
                 </div>
             </div>
