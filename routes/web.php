@@ -49,13 +49,11 @@ use App\Http\Controllers\BinhLuanController;
 
     //Dành cho Admin
 
-
-
 Route::get('/admin',[UserController::class,'login'])->name('.Admin_Login');
 Route::post('/admin_login',[UserController::class,'Handle_Login'])->name('.handle_admin_Login');
 
 Route::get('/index',[AdminController::class,'index'])->name('menu');
-Route::get('/listuser',[AdminController::class,'listUser'])->name('ListUser')->middleware('Admin');
+Route::get('/TaiKhoan',[AdminController::class,'listUser'])->name('ListUser')->middleware('Admin');
 
 Route::get('logout',[UserController::class,'logout'])->name('Logout')->middleware('auth');
 Route::get('Adminlogout',[UserController::class,'Admin_Logout'])->name('.admin_logout')->middleware('auth');
@@ -65,6 +63,17 @@ Route::get('/registerAdmin',[UserController::class,'RegisterAdmin'])->name('.cre
 Route::post('/registerAdmin',[UserController::class,'storeAdmin'])->name('.add-RegisterAdmin');
 
 
+Route::get('/addloaibaiviet',[PostController::class,'addloaibaiviet'])->name('.add-loaibaiviet');
+Route::post('/createloaibaiviet',[PostController::class,'createloaibaiviet'])->name('.create-loaibaiviet');
+
+Route::get('/addloaido',[PostController::class,'addloaido'])->name('.add-loaido');
+Route::post('/createloaido',[PostController::class,'createloaido'])->name('.create-loaido');
+
+Route::get('/addquan',[PostController::class,'addquan'])->name('.add-quan');
+Route::post('/createquan',[PostController::class,'createquan'])->name('.create-quan');
+
+Route::get('/addphuong',[PostController::class,'addphuong'])->name('.add-phuong');
+Route::post('/createphuong',[PostController::class,'createphuong'])->name('.create-phuong');
 
 
 
@@ -76,3 +85,30 @@ Route::get('/MeoTimDo3',[AdminController::class,'MeoTimDo3'])->name('meo-tim-do3
 Route::get('/MeoTimDo4',[AdminController::class,'MeoTimDo4'])->name('meo-tim-do4');
 Route::get('/MeoTimDo5',[AdminController::class,'MeoTimDo5'])->name('meo-tim-do5');
 Route::get('/MeoTimDo6',[AdminController::class,'MeoTimDo6'])->name('meo-tim-do6');
+
+
+//----------------------------------------------------------------------------------------------------------//
+
+Route::get('/loaibaiviet',[PostController::class,'LoaiBaiViet'])->name('loai-bai-viet');
+Route::get('/update_loaibaiviet/{id}',[PostController::class,'show'])->name('.show-loaibaiviet');
+Route::post('/update_loaibaiviet/{id}',[PostController::class,'update'])->name('.update-loaibaiviet');
+//----------------------------------------------------------------------------------------------------------//
+
+Route::get('/loaidovat',[PostController::class,'LoaiDo'])->name('loai-do-vat');
+Route::get('/update_loaido/{id}',[PostController::class,'showLoaiDo'])->name('.show-loaido');
+Route::post('/update_loaido/{id}',[PostController::class,'updateLoaiDo'])->name('.update-loaido');
+//----------------------------------------------------------------------------------------------------------//
+
+Route::get('/tintuc',[PostController::class,'TinTuc'])->name('tin-tuc');
+
+//----------------------------------------------------------------------------------------------------------//
+Route::get('/quan',[PostController::class,'Quan'])->name('quan');
+Route::get('/update_quan/{id}',[PostController::class,'showQuan'])->name('.show-quan');
+Route::post('/update_quan/{id}',[PostController::class,'updateQuan'])->name('.update-quan');
+Route::get('/delete_quan/{id}',[PostController::class,'deleteQuan'])->name('.delete-quan');
+
+//----------------------------------------------------------------------------------------------------------//
+Route::get('/phuong',[PostController::class,'Phuong'])->name('phuong');
+Route::get('/update_phuong/{id}',[PostController::class,'showPhuong'])->name('.show-phuong');
+Route::post('/update_phuong/{id}',[PostController::class,'updatePhuong'])->name('.update-phuong');
+Route::get('/delete_phuong/{id}',[PostController::class,'deletePhuong'])->name('.delete-phuong');

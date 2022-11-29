@@ -26,8 +26,8 @@ class Post extends Model
         'ngaydang',
         'loaidovat_id',
         'loaibaiviet_id',
-        'quan_id',
-        'phuong_id',
+        'quan',
+        'phuong',
         'luotxem',
         'binhluan',
         'trang_thai'];

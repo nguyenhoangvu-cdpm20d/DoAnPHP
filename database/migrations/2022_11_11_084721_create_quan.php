@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('Quan', function (Blueprint $table) {
             $table->id();
             $table->string('tenquan')->nulable();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
