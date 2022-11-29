@@ -23,6 +23,7 @@ return new class extends Migration
             $table->String('phone')->nullable()->default('Chưa nhập thông tin');
             $table->integer('loaitaikhoan_id')->nullable()->default('1');
             $table->bigInteger('trang_thai')->default('1');
+            $table->string('remember_token')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

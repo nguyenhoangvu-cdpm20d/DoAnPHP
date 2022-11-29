@@ -27,7 +27,7 @@ class UserController extends Controller
     {
         return View('PagesUser.Login');
     }
-
+    
     
 
 
@@ -106,7 +106,7 @@ class UserController extends Controller
         return view('PagesUser.EditProfile',compact('profile'));
     }
     
-    public function update(Request $request )
+    public function update(Request $request,User $id)
     {
         $profile = User::find(Auth::user()->id);
         if(empty($profile))
@@ -118,6 +118,7 @@ class UserController extends Controller
         $profile -> email = $request -> email;
         $profile -> phone = $request -> phone;
         $profile -> address = $request -> address;
+        $profile->image="avatar.JPG";
         // $profile -> image = $request -> image;
         // $profile ->path = $request->file('avatar')->store('public/avatar');
         // $file = $request->avatar;
@@ -218,4 +219,7 @@ class UserController extends Controller
     {
         //
     }
+
+
+   
 }
