@@ -90,8 +90,17 @@
 	<section id="content">
 		<!-- NAVBAR -->
 		<nav>
-
-		</nav>
+            <i class='bx bx-menu'></i>  
+            <form action="{{route('.SearchAdmin')}}">
+                <div class="form-input">
+                    <input type="search" placeholder="Search..." name="search">
+                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="switch-mode" hidden>
+            <label for="switch-mode" class="switch-mode"></label>
+            
+        </nav>
 		<!-- NAVBAR -->
 
 		<!-- MAIN -->
@@ -114,7 +123,6 @@
 							<tr>
 								<th>ID</th>
 								<th>Phường</th>
-
 								<th>Chức Năng</th>
 							</tr>
 						</thead>

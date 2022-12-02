@@ -46,7 +46,6 @@ class PostController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -67,16 +66,16 @@ class PostController extends Controller
             'ngaydang' => $request->ngaydang,
             'loaidovat_id' => $request->loaidovat_id,
             'quan' => $request->quan,
-            'phuong' => $request->phuong,
+            'phuong' => '1',
             'trang_thai' => $request->trang_thai = 1,
-            'image' => $request->file('anh')->getClientOriginalName(),
-            'path' => $request->file('anh')->store('public/anh'),
-            $file = $request->anh,
-            $file_name = $file->getClientOriginalName(),
-            $file->move(public_path('anh'), $file_name),
-            $request->merge(['anh' => $file_name]),
-
+            'image' => null,
         ]);
+        if ($request->has("image")) {
+            $fileName = "{$baiDang->id}.jpg";
+            $request->file('image')->storeAs('anh', $fileName, 'public');
+            $baiDang->image = "{$fileName}";
+            $baiDang->save();
+        }
         if (!empty($baiDang)) {
             return redirect()->route('trang-chu');
         }
@@ -168,7 +167,11 @@ class PostController extends Controller
         $Loaibaiviet->save();
         return redirect()->route('loai-bai-viet');
     }
-
+    public function deleteLoaiBaiViet($id)
+    {
+        $Loaibaiviet = LoaiBaiViet::find($id)->delete();
+        return redirect()->route('loai-bai-viet');
+    }
     //=============================================LOẠI ĐỒ===========================================================//
 
     public function LoaiDo()
@@ -211,7 +214,11 @@ class PostController extends Controller
         $LoaiDo->save();
         return redirect()->route('loai-do-vat');
     }
-
+    public function deleteLoaiDo($id)
+    {
+        $LoaiDo = LoaiDo::find($id)->delete();
+        return redirect()->route('loai-do-vat');
+    }
     //=============================================TIN TỨC===========================================================//
 
 
@@ -220,6 +227,33 @@ class PostController extends Controller
         $tintuc = TinTuc::all();
         //dd($loaidovat->all());
         return view('PagesAdmin.TinTuc', compact('tintuc'));
+    }
+    public function addTinTuc()
+    {
+        return view('PagesAdmin.addTinTuc');
+    }
+    public function createTinTuc(Request $request)
+    {
+        $addTinTuc = TinTuc::create([
+            'Taikhoan' => $request->Taikhoan,
+            'Title' => $request->Title,
+            'noidung' => $request->noidung,
+            'image' => null,
+        ]);
+        if ($request->has("image")) {
+            $fileName = "{$addTinTuc->id}.jpg";
+            $request->file('image')->storeAs('anh', $fileName, 'public');
+            $addTinTuc->image = "{$fileName}";
+            $addTinTuc->save();
+        }
+
+
+        return redirect()->route('tin-tuc');
+    }
+    public function deleteTinTuc($id)
+    {
+        $tintuc = TinTuc::find($id)->delete();
+        return redirect()->route('tin-tuc');
     }
     //=============================================QUẬN===========================================================//
 

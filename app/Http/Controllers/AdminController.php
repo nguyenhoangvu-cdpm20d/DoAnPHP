@@ -30,7 +30,11 @@ class AdminController extends Controller
         $listUser = User::all();
         return View('PagesAdmin.LoaiTaiKhoan',compact('listUser'));
     }
-
+    public function deletelistUser($id)
+    {
+        $listUser = User::find($id)->delete();
+        return redirect()->route('ListUser');
+    }
     public function MeoTimDo()
     {
         return View('PagesUser.MeoTimDo');

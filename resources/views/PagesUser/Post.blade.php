@@ -199,7 +199,7 @@
                                                         <img src="" alt="Ảnh xem trước" id="imagePreview">
                                                     </div>
                                                     <div class="imageUpload">
-                                                        <input name="anh" type="file" id="imageUploadInput" onchange="chooseFile(this)" accept="anh/gif, anh/jpeg, anh/png, anh/jpg">
+                                                        <input name="image" type="file" id="imageUploadInput" onchange="chooseFile(this)" accept="anh/gif, anh/jpeg, anh/png, anh/jpg">
                                                         <span class="button" id="imageUploadInputBtn">Chọn Hình</span>
                                                     </div>
                                                     <div id="uploadFileStatus"></div>
@@ -221,7 +221,7 @@
                                             </main>
                                         </div>
                                         <br>
-                                        <button type="submit" class="btn btn-outline-warning">Đăng Bài</button>
+                                        
                                         <input name="submit" id="submit" class="snip1582" value="Đăng tin" type="submit">
 
                                     </fieldset>

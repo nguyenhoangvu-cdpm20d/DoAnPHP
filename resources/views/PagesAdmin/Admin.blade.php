@@ -60,26 +60,26 @@
                 </a>
             </li>
             <li>
-				<a href="{{route('tin-tuc')}}">
-					<i class='bx bxs-news'></i>
-					<span class="text">Quản lý tin tức</span>
-				</a>
-			</li>
+                <a href="{{route('tin-tuc')}}">
+                    <i class='bx bxs-news'></i>
+                    <span class="text">Quản lý tin tức</span>
+                </a>
+            </li>
             <li>
-				<a href="{{route('quan')}}">
-					<i class='bx bxs-home'></i>
-					<span class="text">Quản lý Quận</span>
-				</a>
-			</li>
+                <a href="{{route('quan')}}">
+                    <i class='bx bxs-home'></i>
+                    <span class="text">Quản lý Quận</span>
+                </a>
+            </li>
             <li>
-				<a href="{{route('phuong')}}">
-					<i class='bx bxs-home'></i>
-					<span class="text">Quản lý Phường</span>
-				</a>
-			</li>
+                <a href="{{route('phuong')}}">
+                    <i class='bx bxs-home'></i>
+                    <span class="text">Quản lý Phường</span>
+                </a>
+            </li>
         </ul>
         <ul class="side-menu">
-            
+
             <li>
                 <a href="{{route('.Admin_Login')}}" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
@@ -91,10 +91,18 @@
     <section id="content">
         <!-- NAVBAR -->
         <nav>
-
+            <i class='bx bx-menu'></i>  
+            <form action="{{route('.SearchAdmin')}}">
+                <div class="form-input">
+                    <input type="search" placeholder="Search..." name="search">
+                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="switch-mode" hidden>
+            <label for="switch-mode" class="switch-mode"></label>
+            
         </nav>
         <!-- NAVBAR -->
-
         <!-- MAIN -->
         <main>
 
@@ -111,7 +119,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>STT</th>
+                                <th>ID</th>
                                 <th>Tên đăng nhập</th>
                                 <th>Tiêu đề</th>
                                 <th>Nội dung</th>
@@ -138,7 +146,7 @@
                                 <td>{{$Post->created_at->format('d/m/Y')}}</td>
                                 <td> <a href="/ChiTietBaiViet/{{$Post->id}}" class="btn btn-outline-success">Xem chi
                                         tiết</a>
-                                    <a href="/xoabaiviet/{{$Post->id}}" class="btn btn-outline-danger">Xoa</a>
+                                    <a href="/xoabaiviet/{{$Post->id}}" class="btn btn-outline-danger">Xóa</a>
                                 </td>
                             </tr>
                         </tbody>
