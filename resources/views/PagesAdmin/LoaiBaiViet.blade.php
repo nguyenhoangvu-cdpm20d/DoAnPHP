@@ -91,8 +91,17 @@
     <section id="content">
         <!-- NAVBAR -->
         <nav>
-
-        </nav>
+            <i class='bx bx-menu'></i>  
+            <form action="{{route('.SearchAdmin')}}">
+                <div class="form-input">
+                    <input type="search" placeholder="Search..." name="search">
+                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="switch-mode" hidden>
+            <label for="switch-mode" class="switch-mode"></label>
+            
+        </nav> 
         <!-- NAVBAR -->
 
         <!-- MAIN -->
@@ -124,7 +133,7 @@
                                 <td>{{$List->tenloaibaiviet}}</td>
                                 <td>
                                     <a href="{{('/update_loaibaiviet/'.$List->id)}}"><button type="button" class="btn btn-outline-success">Chỉnh Sửa</button></a> 
-                                    <a href="" class="btn btn-outline-danger">Xoá</a>
+                                    <a href="/delete_loaibaiviet/{{$List->id}}" class="btn btn-outline-danger">Xoá</a>
                                 </td>
                             </tr>
                             @endforeach
