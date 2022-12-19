@@ -2,20 +2,21 @@
 <html lang="en">
 
 <head>
+<link rel="shortcut icon" href="{{asset('teamplate/ima/icon.jpg')}}">
     <meta charset="UTF-8">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
 </head>
 
 <body>
     <!------ Include the above in your HEAD tag ---------->
 
     <div class="container" style="padding-top: 60px;">
-        <h1 class="page-header">Edit Profile</h1>
+        <h1 class="page-header">Chỉnh sửa thông tin cá nhân</h1>
         <div class="row">
             <!-- left column -->
 
@@ -27,7 +28,7 @@
                     action="{{route('.Update_Profile', ['id' => Auth::user()->id ])}}" role="form">
 @csrf
                     <div class="form-group" style="font-size: 20px;">
-                        <label class="col-md-3 control-label">Username:</label>
+                        <label class="col-md-3 control-label">Tên đăng nhập:</label>
                         <div class="col-md-8">
                             <input type="text" class="form-control" name="Username" value="{{Auth::user()->Username}}"
                                 id="first_name" placeholder="Nhập tên đăng nhập của bạn" title="Nhập tên đăng nhập">
@@ -62,6 +63,7 @@
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-8">
                              <button class="btn btn-lg btn-success" type="submit"><a style="color:white;" href="{{route('profile')}}"></a>Lưu</button> 
+                              
                             <!-- <button class="btn btn-lg btn-success" type="submit">Save</button> -->
                             <span></span>
                             

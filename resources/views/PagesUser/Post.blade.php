@@ -115,6 +115,7 @@
 </style>
 
 <head>
+    <link rel="shortcut icon" href="{{asset('teamplate/ima/icon.jpg')}}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -122,7 +123,6 @@
 </head>
 
 <body>
-    <button type="submit" class="btn btn-outline-danger">Quay lại</button>
     <section class="vh-100 bg-image">
         <div class="mask d-flex align-items-center h-100 gradient-custom-3">
             <div class="container h-100">
@@ -130,7 +130,7 @@
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                         <div class="card" style="border-radius: 15px;">
                             <div class="card-body p-5">
-                                <h2 class="text-uppercase text-center mb-5">Đăng bài viết</h2>
+                                <h1 class="text-uppercase text-center mb-5" style="font-weight: bolder;">Đăng bài viết</h1>
 
                                 <form name="contactForm" id="contactForm" method="post" action="{{route('Add_Post')}}" enctype="multipart/form-data" autocomplete="off">
                                     @csrf
@@ -189,7 +189,8 @@
                                         </div>
                                         <br>
                                         <div class="message form-field">
-                                            <textarea name="noidung" id="cMessage" class="full-width" placeholder="Nội dung" required></textarea>
+                                            <textarea name="noidung" id="cMessage" class="full-width" placeholder="Nội dung" required style="width: 100%;
+                                            height: 100px;"></textarea>
                                         </div>
                                         <br>
                                         <div>
@@ -215,18 +216,32 @@
                                                         <p>
                                                             Dung lượng:
                                                             <span id="fileInfomation_size">----</span>
+
                                                         </p>
                                                     </div>
                                                 </div>
                                             </main>
                                         </div>
                                         <br>
-                                        
                                         <input name="submit" id="submit" class="snip1582" value="Đăng tin" type="submit">
-
                                     </fieldset>
                                 </form> <!-- end form -->
-
+                                <a href="{{route('trang-chu')}}" id="a1"><button style="background-color: #c47135;
+                                                        border: none;
+                                                        color: #ffffff;
+                                                        cursor: pointer;
+                                                        display: inline-block;
+                                                        font-family: 'BenchNine', Arial, sans-serif;
+                                                        font-size: 1em;
+                                                        font-size: 22px;
+                                                        line-height: 1em;
+                                                        margin: 15px 40px;
+                                                        outline: none;
+                                                        padding: 12px 40px 10px;
+                                                        position: relative;
+                                                        text-transform: uppercase;
+                                                        font-weight: 700;;">QUAY LẠI
+                                    </button></a>
                             </div>
                         </div>
                     </div>
@@ -235,20 +250,13 @@
         </div>
     </section>
 
-    </main>
 
-    </div> <!-- end s-content -->
+
 
 
     <!-- footer
         ================================================== -->
-    <footer class="s-footer footer">
-        <div class="go-top">
-            <a class="smoothscroll" title="Back to Top" href="#top"></a>
-        </div>
-    </footer>
 
-    </div> <!-- end s-wrap -->
 
 
     <!-- Java Script
@@ -292,7 +300,7 @@
                     }
 
                     // Validate file size
-                    if (file.size > this.maxSize) {
+                    if (file.size >= this.maxSize) {
                         self.selector.status.innerHTML =
                             "Dung lượng file vượt quá giới hạn (tối đa 30MB được chấp nhận)";
                         return;

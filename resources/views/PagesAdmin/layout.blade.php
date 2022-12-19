@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{asset('teamplate/ima/icon.jpg')}}">
 
 	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -29,7 +30,7 @@
                 </a>
             </li>
 
-            <li class="active">
+            <li>
                 <a href="{{route('menu')}}">
                     <i class='bx bxs-edit'></i>
                     <span class="text">Quản lý bài viết</span>
@@ -71,6 +72,12 @@
 					<span class="text">Quản lý Phường</span>
 				</a>
 			</li>
+			<li>
+                <a href="{{route('baocao')}}">
+                    <i class='bx bxs-book'></i>
+                    <span class="text">Quản lý Báo cáo</span>
+                </a>
+            </li>
 		</ul>
 		<ul class="side-menu">
 			

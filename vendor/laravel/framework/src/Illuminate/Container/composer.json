@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Illuminate\\Container\\": ""
+            "App\\": "app/"
         }
     },
     "extra": {
@@ -35,4 +35,5 @@
         "sort-packages": true
     },
     "minimum-stability": "dev"
+    
 }

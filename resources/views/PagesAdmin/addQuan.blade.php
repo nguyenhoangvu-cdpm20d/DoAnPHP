@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{asset('teamplate/ima/icon.jpg')}}">
 
 	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -76,6 +77,12 @@
 					<span class="text">Quản lý Phường</span>
 				</a>
 			</li>
+            <li>
+                <a href="{{route('baocao')}}">
+                    <i class='bx bxs-book'></i>
+                    <span class="text">Quản lý Báo cáo</span>
+                </a>
+            </li>
         </ul>
         <ul class="side-menu">
             
@@ -111,7 +118,7 @@
 					<div class="bg-light rounded h-100 p-4">
 						<h6 class="mb-4">Thêm Quận</h6>
 						<div class="input-group mb-3">
-							<input type="text" class="form-control" placeholder="Tên Quận" name="tenquan" aria-describedby="basic-addon1">
+						<input type="text" class="form-control" placeholder="Tên Quận" name="tenquan" aria-describedby="basic-addon1">
 						</div>
 						@if(session('Error'))
 						<p style="color:red">{{session('Error')}}</p>

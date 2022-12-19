@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{asset('teamplate/ima/icon.jpg')}}">
 
 	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -77,6 +78,12 @@
 					<span class="text">Quản lý Phường</span>
 				</a>
 			</li>
+			<li>
+                <a href="{{route('baocao')}}">
+                    <i class='bx bxs-book'></i>
+                    <span class="text">Quản lý Báo cáo</span>
+                </a>
+            </li>
 		</ul>
 		<ul class="side-menu">
 
@@ -91,24 +98,24 @@
 	<section id="content">
 		<!-- NAVBAR -->
 		<nav>
-            <i class='bx bx-menu'></i>  
-            <form action="{{route('.SearchAdmin')}}">
-                <div class="form-input">
-                    <input type="search" placeholder="Search..." name="search">
-                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-                </div>
-            </form>
-            <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label>
-            
-        </nav>
+			<i class='bx bx-menu'></i>
+			<form action="{{route('.SearchAdmin')}}">
+				<div class="form-input">
+					<input type="search" placeholder="Search..." name="search">
+					<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+
+		</nav>
 		<!-- NAVBAR -->
 
 		<!-- MAIN -->
 		<main>
-		<a href="{{route('.add-tintuc')}}"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
-						Thêm Tin Mới
-					</button></a>
+			<a href="{{route('.add-tintuc')}}"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+					Thêm Tin Mới
+				</button></a>
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
@@ -121,7 +128,6 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Tài khoản</th>
 								<th>Tiêu Đề</th>
 								<th>Nội Dung Bài Đăng</th>
 								<th>Hình ảnh</th>
@@ -129,16 +135,19 @@
 							</tr>
 						</thead>
 						<tbody>
-						@foreach($tintuc as $List)
+							@foreach($tintuc as $List)
 							<tr>
 								<td>{{$List->id}}</td>
-								<td>{{$List->Taikhoan}}</td>
 								<td>{{$List->Title}}</td>
-								<td><button type="button" class="btn btn-success">Xem Chi Tiết</button></td>
+								<td>
+									
+									<a href="/ChiTietTinTuc/{{$List->id}}">
+										<button type="button" class="btn btn-success">Xem Chi Tiết</button></a>
+									
+								</td>
 								<td>{{$List->image}}</td>
 								<td>
-								<a href="" class="btn btn-outline-success">Chỉnh Sửa</a>
-                                    <a href="/delete_tintuc/{{$List->id}}" class="btn btn-outline-danger">Xoá</a>
+									<a href="/delete_tintuc/{{$List->id}}" class="btn btn-outline-danger">Xoá</a>
 								</td>
 							</tr>
 							@endforeach

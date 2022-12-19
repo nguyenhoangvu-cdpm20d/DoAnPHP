@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BaoCao;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\LoaiDo;
@@ -54,6 +55,45 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function showBaiViet($id)
+    {
+        $baiDang = Post::find($id);
+        $CreatePost1 = LoaiDo::all();
+        $CreatePost2 = Quan::all();
+        $CreatePost3 = Phuong::all();
+        $CreatePost4 = LoaiBaiViet::all();
+        return view('PagesUser.SuaBaiViet', compact('baiDang','CreatePost1', 'CreatePost2', 'CreatePost3', 'CreatePost4'));
+    }
+    public function updateBaiViet(Request $request, $id)
+    {
+        $baiDang = Post::find($id);
+        $baiDang->Title = $request->Title;
+        $baiDang->noidung = $request->noidung;
+        $baiDang->TenTK = $request->TenTK;
+        $baiDang->TK_id = $request->TK_id;
+        $baiDang->ngaydang = $request->ngaydang;
+        $baiDang->loaidovat_id = $request->loaidovat_id;
+        $baiDang->quan = $request->quan;
+        $baiDang->phuong = '1';
+        $baiDang->image = $request->image;
+        $baiDang->save();
+        if ($request->has("image")) {
+            $fileName = "{$baiDang->id}.jpg";
+            $request->file('image')->storeAs('anh', $fileName, 'public');
+            $baiDang->image = "{$fileName}";
+            $baiDang->save();
+        }
+        if (!empty($BaiDang)) {
+            return redirect()->route('trang-chu');
+        }
+        return redirect()->route('trang-chu');
+    }
+
+    public function deleteBaiViet($id){
+        $baiDang = Post::find($id)->delete();
+        return redirect()->route('profile');
+    }
+
     public function store(Request $request)
     {
 
@@ -89,41 +129,6 @@ class PostController extends Controller
         return view('PagesUser.ChiTietBaiViet', compact(['chitiet', 'ListComment']));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Post $post)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $baiviet = Post::find($id)->delete();
@@ -246,8 +251,6 @@ class PostController extends Controller
             $addTinTuc->image = "{$fileName}";
             $addTinTuc->save();
         }
-
-
         return redirect()->route('tin-tuc');
     }
     public function deleteTinTuc($id)
@@ -255,12 +258,13 @@ class PostController extends Controller
         $tintuc = TinTuc::find($id)->delete();
         return redirect()->route('tin-tuc');
     }
+
     //=============================================QUẬN===========================================================//
 
     public function Quan()
     {
         $quan = Quan::all();
-        //dd($loaidovat->all());
+        // dd($quan->all());
         return view('PagesAdmin.Quan', compact('quan'));
     }
     public function addquan()
@@ -345,5 +349,33 @@ class PostController extends Controller
     {
         $Phuong = Phuong::find($id)->delete();
         return redirect()->route('phuong');
+    }
+    //=============================================Báo cáo===========================================================//
+    public function Baocao()
+    {
+        $baocao = BaoCao::all();
+        //dd($loaidovat->all());
+        return view('PagesAdmin.Baocao', compact('baocao'));
+    }
+    
+    
+    public function TaoBaoCao($id,Request $request)
+    {
+
+        $baocao = BaoCao::create([
+            'noidung' => $request->noidung,
+            'Username' => Auth::user()->Username,
+            'TK_id' => $request->TK_id,
+            'idBaiViet' => $request->idBaiViet,
+        ]);
+        if (!empty($baocao)) {
+            return redirect('/ChiTietBaiViet/'.$request->idBaiViet);
+        }
+        return redirect()->route('trang-chu');
+    }
+    public function deleteBaoCao($id)
+    {
+        $baocao = BaoCao::find($id)->delete();
+        return redirect()->route('baocao');
     }
 }
