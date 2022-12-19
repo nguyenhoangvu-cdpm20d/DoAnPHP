@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\TinTuc;
 use App\Models\Admin;
 use App\Models\User;
 use App\Models\Post;
@@ -37,7 +37,8 @@ class AdminController extends Controller
     }
     public function MeoTimDo()
     {
-        return View('PagesUser.MeoTimDo');
+        $tintuc = TinTuc::all()->sortByDesc('id');
+        return View('PagesUser.MeoTimDo',compact('tintuc'));
     }
     
     public function MeoTimDo1()

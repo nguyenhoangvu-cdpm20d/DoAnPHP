@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{asset('teamplate/ima/icon.jpg')}}">
 
 	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -77,6 +78,12 @@
 					<span class="text">Quản lý Phường</span>
 				</a>
 			</li>
+			<li>
+				<a href="{{route('baocao')}}">
+					<i class='bx bxs-book'></i>
+					<span class="text">Quản lý Báo cáo</span>
+				</a>
+			</li>
 		</ul>
 		<ul class="side-menu">
 
@@ -91,17 +98,17 @@
 	<section id="content">
 		<!-- NAVBAR -->
 		<nav>
-            <i class='bx bx-menu'></i>  
-            <form action="{{route('.SearchAdmin')}}">
-                <div class="form-input">
-                    <input type="search" placeholder="Search..." name="search">
-                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-                </div>
-            </form>
-            <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label>
-            
-        </nav>
+			<i class='bx bx-menu'></i>
+			<form action="{{route('.SearchAdmin')}}">
+				<div class="form-input">
+					<input type="search" placeholder="Search..." name="search">
+					<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+
+		</nav>
 		<!-- NAVBAR -->
 
 		<!-- MAIN -->

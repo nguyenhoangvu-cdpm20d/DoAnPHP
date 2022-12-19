@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="templatePost/index2.css">
+<link rel="shortcut icon" href="{{asset('teamplate/ima/icon.jpg')}}">
 <link href=https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css rel="stylesheet">
 <link  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

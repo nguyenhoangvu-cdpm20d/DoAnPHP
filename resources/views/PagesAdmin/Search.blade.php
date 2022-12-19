@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{asset('teamplate/ima/icon.jpg')}}">
 
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -35,7 +36,7 @@
                 </a>
             </li>
 
-            <li class="active">
+            <li>
                 <a href="{{route('menu')}}">
                     <i class='bx bxs-edit'></i>
                     <span class="text">Quản lý bài viết</span>
@@ -75,6 +76,12 @@
                 <a href="{{route('phuong')}}">
                     <i class='bx bxs-home'></i>
                     <span class="text">Quản lý Phường</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('baocao')}}">
+                    <i class='bx bxs-book'></i>
+                    <span class="text">Quản lý Báo cáo</span>
                 </a>
             </li>
         </ul>
@@ -122,10 +129,8 @@
                                 <th>Tên đăng nhập</th>
                                 <th>Tiêu đề</th>
                                 <th>Nội dung</th>
-                                <th>Hình ảnh</th>
                                 <th>Quận</th>
                                 <th>Phường</th>
-                                <th>Ngày đăng</th>
                                 <th>Chức năng</th>
                             </tr>
                         </thead>
@@ -138,11 +143,11 @@
                                 </td>
                                 <td>{{$ListPost->TenTK}}</td>
                                 <td>{{$ListPost->Title}}</td>
-                                <td>{{$ListPost->noidung}}</td>
+                                <td><a href="/ChiTietBaiViet/{{$ListPost->id}}" class="btn btn-outline-success">Xem chi
+                                        tiết</a></td>
                                 <td>{{$ListPost->quan}}</td>
                                 <td>{{$ListPost->phuong}}</td>
-                                <td> <a href="/ChiTietBaiViet/{{$ListPost->id}}" class="btn btn-outline-success">Xem chi
-                                        tiết</a>
+                                <td>
                                     <a href="/xoabaiviet/{{$ListPost->id}}" class="btn btn-outline-danger">Xóa</a>
                                 </td>
                             </tr>

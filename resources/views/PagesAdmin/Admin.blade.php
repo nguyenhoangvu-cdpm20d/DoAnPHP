@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{asset('teamplate/ima/icon.jpg')}}">
 
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -77,6 +78,12 @@
                     <span class="text">Quản lý Phường</span>
                 </a>
             </li>
+            <li>
+                <a href="{{route('baocao')}}">
+                    <i class='bx bxs-book'></i>
+                    <span class="text">Quản lý Báo cáo</span>
+                </a>
+            </li>
         </ul>
         <ul class="side-menu">
 
@@ -122,35 +129,35 @@
                                 <th>ID</th>
                                 <th>Tên đăng nhập</th>
                                 <th>Tiêu đề</th>
-                                <th>Nội dung</th>
-                                <th>Hình ảnh</th>
+                                <th>Xem chi tiết</th>
                                 <th>Quận</th>
                                 <th>Phường</th>
                                 <th>Ngày đăng</th>
                                 <th>Chức năng</th>
                             </tr>
                         </thead>
-                        @foreach($ListPost as $Post)
-                        <tbody>
+                        
+                        <tbody>@foreach($ListPost as $Post)
                             <tr>
                                 <td>
-
                                     <p>{{$Post->id}}</p>
                                 </td>
                                 <td>{{$Post->TenTK}}</td>
-                                <td>{{$Post->Title}}</td>
-                                <td>{{$Post->noidung}}</td>
-                                <td>{{$Post->image}}</td>
-                                <td>{{$Post->quan_id}}</td>
-                                <td>{{$Post->phuong_id}}</td>
-                                <td>{{$Post->created_at->format('d/m/Y')}}</td>
+                                <td style="padding: 6px;
+                                        overflow: hidden;
+                                        white-space: nowrap;
+                                        text-overflow: ellipsis;">{{$Post->Title}}</td>
                                 <td> <a href="/ChiTietBaiViet/{{$Post->id}}" class="btn btn-outline-success">Xem chi
                                         tiết</a>
+                                <td>{{$Post->quan}}</td>
+                                <td>{{$Post->phuong}}</td>
+                                <td>{{$Post->created_at->format('d/m/Y')}}</td>
+                                <td>
                                     <a href="/xoabaiviet/{{$Post->id}}" class="btn btn-outline-danger">Xóa</a>
                                 </td>
-                            </tr>
+                            </tr>@endforeach
                         </tbody>
-                        @endforeach
+                        
                     </table>
 
                 </div>

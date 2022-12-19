@@ -158,8 +158,8 @@ b {
 	width :220px;
 	height:400px;
 	border: 1px solid #C00;
-	float:left;
-	margin-left:5px;
+	float:right;
+	margin-right:5px;
 }
 
 hr {
@@ -277,7 +277,6 @@ span p{
 	border:0px solid ;
 	float:left;
 	background-color:#151D28;
-	padding-left:15px;
 }
 .divft2{
 	width:100%;
@@ -287,7 +286,6 @@ span p{
 	float:left;
 	background-color:#192433;
 }
-
 
 
 #aft{

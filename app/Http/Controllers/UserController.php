@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Post;
 use App\Http\Requests\dangnhapRequest;
 use App\Http\Requests\dangkyRequest;
+use App\Models\TinTuc;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,58 +21,74 @@ class UserController extends Controller
     public function index()
     {
         $ListPost = Post::all()->sortByDesc('id');
-        return View('PagesUser.TrangChu',compact('ListPost'));
+        $tintuc = TinTuc::all()->sortByDesc('id');
+        return View('PagesUser.TrangChu', compact('ListPost', 'tintuc'));
     }
-
+    public function TinTuc()
+    {
+        //$tintuc = TinTuc::all()->sortByDesc('id');
+        //dd($loaidovat->all());
+        //return view('PagesUser.TrangChu', compact('tintuc'));
+    }
     public function login()
     {
         return View('PagesUser.Login');
     }
-    
-    
+
+    public function ChiTietTinTuc(TinTuc $id)
+    {
+        $TinTuc = TinTuc::find($id);
+        $ListPost = Post::all()->sortByDesc('id');
+        $tintuc=TinTuc::find($id);
+        $tintuc = TinTuc::all()->sortByDesc('id');
+        return view('PagesUser.TinTuc', compact(['TinTuc', 'ListPost', 'tintuc']));
+    }
 
 
-    
+
+
 
     public function Handle_Login(dangnhapRequest $request)
     {
         //if(Auth::attempt(['Username'=>$Username,'password'=>$password,'loaitaikhoan_id'=>2]))
-         $credentials =[
-            'Username' => $request ->Username,
-            'password' => $request ->password,
-            'loaitaikhoan_id' => 1];
-            $credentials2 =[
-                'Username' => $request ->Username,
-                'password' => $request ->password,
-                'loaitaikhoan_id' => 2];
+        $credentials = [
+            'Username' => $request->Username,
+            'password' => $request->password,
+            'loaitaikhoan_id' => 1
+        ];
+        $credentials2 = [
+            'Username' => $request->Username,
+            'password' => $request->password,
+            'loaitaikhoan_id' => 2
+        ];
         // $credentials2 = $request -> only(['Username','password','loaitaikhoan_id'=>2]);
-        if(Auth::attempt($credentials)){
-            $ListPost = Post::orderBy('id','DESC')->paginate(3);
-            return View('PagesUser.TrangChu',compact('ListPost'));
-        }
-        else if(Auth::attempt($credentials2))
-        {
+        if (Auth::attempt($credentials)) {
+            $ListPost = Post::orderBy('id', 'DESC')->paginate(3);
+            $tintuc = TinTuc::all()->sortByDesc('id');
+
+            return View('PagesUser.TrangChu', compact('ListPost', 'tintuc'));
+        } else if (Auth::attempt($credentials2)) {
             $ListPost = Post::all()->sortByDesc('id');
-            return View('PagesAdmin.layout',compact('ListPost'));
+            $tintuc = TinTuc::all()->sortByDesc('id');
+
+            return View('PagesAdmin.layout', compact('ListPost', 'tintuc'));
+        } else {
+            return redirect()->back()->with("Error", "Đăng nhập không thành công!");
         }
-        else{
-            return redirect()->back()->with("Error","Đăng nhập không thành công!");
-        }
-        
     }
 
-    
+
 
     public function logout()
     {
         Auth::logout();
-       return redirect()->route('trang-chu');
+        return redirect()->route('trang-chu');
     }
 
     public function Admin_Logout()
     {
         Auth::logout();
-       return redirect()->route('Login');
+        return redirect()->route('Login');
     }
 
     public function Register()
@@ -86,8 +103,8 @@ class UserController extends Controller
 
     public function Profile()
     {
-        $ListPost=Post::all()->where('TK_id','=',Auth::user()->id);
-        return View('PagesUser.Profile',compact('ListPost'));
+        $ListPost = Post::all()->where('TK_id', '=', Auth::user()->id);
+        return View('PagesUser.Profile', compact('ListPost'));
     }
 
     public function EditProfile()
@@ -103,33 +120,30 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $profile = $user::find(Auth::user()->id);
-        return view('PagesUser.EditProfile',compact('profile'));
+        return view('PagesUser.EditProfile', compact('profile'));
     }
-    
-    public function update(Request $request,User $id)
+
+    public function update(Request $request, User $id)
     {
         $profile = User::find(Auth::user()->id);
-        if(empty($profile))
-        {
-            return("Không tìm thấy người dùng vs id ={$id}");
+        if (empty($profile)) {
+            return ("Không tìm thấy người dùng vs id ={$id}");
         }
         //return view('User.Edit-Profile',compact('profile'));
-        $profile -> Username = $request -> Username;
-        $profile -> email = $request -> email;
-        $profile -> phone = $request -> phone;
-        $profile -> address = $request -> address;
-        $profile->image="avatar.JPG";
+        $profile->Username = $request->Username;
+        $profile->email = $request->email;
+        $profile->phone = $request->phone;
+        $profile->address = $request->address;
+        $profile->image = "avatar.JPG";
         // $profile -> image = $request -> image;
         // $profile ->path = $request->file('avatar')->store('public/avatar');
         // $file = $request->avatar;
         // $file_name = $file->getClientOriginalName();
         // $file->move(public_path('avatar'), $file_name);
         // $request->merge(['avatar' => $file_name]);
-        $profile -> save();
+        $profile->save();
         //dd($profile->all());
         return redirect()->route('profile');
-
-      
     }
 
     /**
@@ -149,34 +163,35 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(dangkyRequest $request)
-    {   
-        $emailExist = User::where('email',$request->email)->count();
-        if($emailExist > 0)
-        {
-            return redirect()->back()->with('Error','Tài khoản email đã tồn tại');
+    {
+        $emailExist = User::where('email', $request->email)->count();
+        if ($emailExist > 0) {
+            return redirect()->back()->with('Error', 'Tài khoản email đã tồn tại');
         }
 
         $Users = User::create([
-            'Username'=>$request->Username,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'loaitaikhoan_id'=>1
+            'Username' => $request->Username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'loaitaikhoan_id' => 1
         ]);
-        if(!empty($Users)){
+        if (!empty($Users)) {
             $ListPost = Post::all()->sortByDesc('id');
-            return View('PagesUser.TrangChu',compact('ListPost'));
+            $tintuc = TinTuc::all()->sortByDesc('id');
+
+            return View('PagesUser.TrangChu', compact('ListPost', 'tintuc'));
         }
     }
 
     public function storeAdmin(Request $request)
     {
         $Users = User::create([
-            'Username'=>$request->Username,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'loaitaikhoan_id'=>2
+            'Username' => $request->Username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'loaitaikhoan_id' => 2
         ]);
-        if(!empty($Users)){
+        if (!empty($Users)) {
             return View('PagesAdmin.Admin');
         }
     }
@@ -198,7 +213,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -207,7 +222,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    
+
 
     /**
      * Remove the specified resource from storage.
@@ -219,7 +234,4 @@ class UserController extends Controller
     {
         //
     }
-
-
-   
 }
